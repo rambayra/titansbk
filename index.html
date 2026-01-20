@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Titans BK | Badminton Club Sweden</title>
+    <!-- Google Fonts: 'Chakra Petch' for sporty headers, 'Inter' for body -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Chakra+Petch:wght@500;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        /* 
+         * TITANS BK - DESIGN SYSTEM
+         * Palette refined for "Deep Navy Blue, Shuttlecock White, Neon Yellow"
+         */
+        :root {
+            /* Primary Brands */
+            --color-bg-deep: #05101a;
+            /* Extremely deep navy, almost black */
+            --color-bg-card: #0b1d2e;
+            /* Lighter navy for cards */
+            --color-bg-glass: rgba(11, 29, 46, 0.7);
+
+            /* Text Colors */
+            --color-text-main: #fcfcfc;
+            /* Shuttlecock White (Bright) */
+            --color-text-muted: #94a3b8;
+            /* Muted Blue-Grey */
+
+            /* Accents */
+            --color-neon-yellow: #ccff00;
+            /* High voltage Neon Yellow */
+            --color-neon-dim: rgba(204, 255, 0, 0.15);
+            /* For backgrounds/hovers */
+            --color-cyan: #2cb4e0;
+            /* Maintaining Cyan as secondary accent from original logo */
+
+            /* Layout */
+            --container-width: 1200px;
+            --header-height: 80px;
+            --border-radius: 4px;
+            /* Sporty, sharp edges */
+        }
+
+        /* --- RESET --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--color-bg-deep);
+            color: var(--color-text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: 'Chakra Petch', sans-serif;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.3s ease;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        /* --- UTILITY CLASSES --- */
+        .container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .text-neon {
+            color: var(--color-neon-yellow);
+        }
+
+        .text-cyan {
+            color: var(--color-cyan);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: transparent;
+            border: 2px solid var(--color-neon-yellow);
+            color: var(--color-neon-yellow);
+            font-family: 'Chakra Petch', sans-serif;
+            font-weight: 700;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn:hover {
+            background-color: var(--color-neon-yellow);
+            color: var(--color-bg-deep);
+            box-shadow: 0 0 20px rgba(204, 255, 0, 0.4);
+        }
+
+        .btn-fill {
+            background-color: var(--color-neon-yellow);
+            color: var(--color-bg-deep);
+        }
+
+        /* --- HEADER & NAV --- */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: var(--header-height);
+            background: rgba(5, 16, 26, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        .logo {
+            font-family: 'Chakra Petch', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: var(--color-text-main);
+        }
+
+        .logo span {
+            color: var(--color-neon-yellow);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--color-neon-yellow);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            color: var(--color-neon-yellow);
+            cursor: pointer;
+        }
+
+        /* --- HERO SECTION --- */
+        #home {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            /* Using a sporty gradient overlay */
+            background:
+                linear-gradient(135deg, rgba(5, 16, 26, 0.95) 0%, rgba(5, 16, 26, 0.7) 100%),
+                url('https://images.unsplash.com/photo-1626224583764-f87db24ac4ea?auto=format&fit=crop&q=80&w=1920');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .hero-tag {
+            color: var(--color-cyan);
+            font-weight: 700;
+            letter-spacing: 4px;
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+
+        .hero-title {
+            font-size: clamp(3rem, 6vw, 5rem);
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-title span {
+            color: transparent;
+            -webkit-text-stroke: 1px var(--color-neon-yellow);
+        }
+
+        .hero-desc {
+            font-size: 1.2rem;
+            color: var(--color-text-muted);
+            margin-bottom: 2.5rem;
+            max-width: 500px;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
+            text-align: left;
+        }
+
+        .hero-card {
+            background: rgba(5, 16, 26, 0.8);
+            padding: 1.5rem;
+            border-left: 3px solid var(--color-neon-yellow);
+            backdrop-filter: blur(4px);
+        }
+
+        .hero-card h3 {
+            color: var(--color-neon-yellow);
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            font-family: 'Chakra Petch', sans-serif;
+        }
+
+        .hero-card p {
+            color: var(--color-text-muted);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        /* --- SECTIONS --- */
+        section {
+            padding: 100px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            color: var(--color-text-muted);
+        }
+
+        /* --- TRAINING TABLE --- */
+        .training-wrapper {
+            background: var(--color-bg-card);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 600px;
+        }
+
+        th {
+            text-align: left;
+            padding: 1.5rem;
+            color: var(--color-neon-yellow);
+            font-family: 'Chakra Petch', sans-serif;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+            font-size: 1.1rem;
+        }
+
+        td {
+            padding: 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--color-text-muted);
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:hover td {
+            background: rgba(255, 255, 255, 0.02);
+            color: var(--color-text-main);
+        }
+
+        .level-badge {
+            padding: 4px 12px;
+            background: var(--color-neon-dim);
+            color: var(--color-neon-yellow);
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        /* --- MEMBERSHIP --- */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .pricing-card {
+            background: var(--color-bg-card);
+            padding: 3rem 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: var(--border-radius);
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--color-neon-yellow);
+        }
+
+        .pricing-card.featured {
+            background: linear-gradient(180deg, var(--color-bg-card) 0%, rgba(204, 255, 0, 0.05) 100%);
+            border: 1px solid var(--color-neon-yellow);
+        }
+
+        .pricing-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .price {
+            font-size: 2.5rem;
+            font-family: 'Chakra Petch', sans-serif;
+            font-weight: 700;
+            color: var(--color-text-main);
+            margin-bottom: 2rem;
+        }
+
+        .price small {
+            font-size: 1rem;
+            color: var(--color-text-muted);
+            font-weight: 400;
+        }
+
+        .features-list li {
+            margin-bottom: 1rem;
+            color: var(--color-text-muted);
+            display: flex;
+            align-items: center;
+        }
+
+        .features-list li::before {
+            content: '✓';
+            color: var(--color-neon-yellow);
+            margin-right: 10px;
+            font-weight: bold;
+        }
+
+        /* --- CONTACT --- */
+        .contact-grid {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 15px;
+            background: var(--color-bg-card);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--color-text-main);
+            font-family: inherit;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--color-neon-yellow);
+        }
+
+        .map-container {
+            width: 100%;
+            height: 100%;
+            min-height: 400px;
+            background: var(--color-bg-card);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+        }
+
+        /* Neon Map Pin */
+        .map-pin {
+            width: 30px;
+            height: 30px;
+            background: var(--color-neon-yellow);
+            border-radius: 50% 50% 50% 0;
+            transform: rotate(-45deg);
+            box-shadow: 0 0 30px var(--color-neon-yellow);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background: #02080d;
+            padding: 3rem 0;
+            text-align: center;
+            color: var(--color-text-muted);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* --- MOBILE --- */
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: var(--header-height);
+                left: 0;
+                width: 100%;
+                background: var(--color-bg-deep);
+                flex-direction: column;
+                padding: 2rem;
+                align-items: center;
+                transform: translateY(-150%);
+                transition: transform 0.4s ease;
+                border-bottom: 2px solid var(--color-neon-yellow);
+            }
+
+            .nav-links.active {
+                transform: translateY(0);
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="container nav-container">
+            <a href="#" class="logo">
+                <img src="titans-logo.jpg" alt="Titans BK Logo"
+                    style="height: 50px; margin-right: 12px; display: inline-block; vertical-align: middle; border-radius: 50%; border: 2px solid var(--color-neon-yellow);">
+                TITANS<span>BK</span>
+            </a>
+            <div class="menu-toggle">
+                <i class="icon-menu">☰</i>
+            </div>
+            <nav class="nav-links">
+                <a href="#home" class="active">Home</a>
+                <a href="#about">About Us</a>
+                <a href="#association">Association</a>
+                <a href="#contact">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- HOME SECTION -->
+    <section id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">UNLEASH THE<br><span>TITAN WITHIN</span></h1>
+
+                <div class="hero-grid">
+                    <div class="hero-card">
+                        <h3>Our Mission</h3>
+                        <p>To spread the joy of badminton across by fostering a community built on
+                            friendship, inclusivity, and wellness.</p>
+                    </div>
+                    <div class="hero-card">
+                        <h3>Our Story</h3>
+                        <p>What began as a group of friends has evolved into a supportive hub for players of all skill
+                            levels. We provide a space where you can develop your athleticism while forging connections
+                            that go beyond the court.</p>
+                    </div>
+                    <div class="hero-card">
+                        <h3>Our Goal</h3>
+                        <p>Betterment for the individual and the community. Join us to experience a sport that empowers
+                            both the body and the spirit.</p>
+                    </div>
+                </div>
+
+                <a href="#contact" class="btn btn-fill">GET IN TOUCH</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section id="about">
+        <div class="container">
+            <div class="section-header">
+                <h2>About Us</h2>
+            </div>
+
+            <div style="max-width: 800px; margin: 0 auto; color: var(--color-text-muted);">
+
+                <div style="margin-bottom: 3rem;">
+                    <h3 style="color: var(--color-text-main); margin-bottom: 1rem;">Welcome to Titans Badminton Klub
+                    </h3>
+                    <p>Titans Badminton Klub is an emerging sports organization dedicated to fostering a vibrant
+                        badminton community. Founded in late 2024, the club has quickly established itself as a
+                        recognized entity within the Swedish sports landscape.</p>
+                </div>
+
+                <div style="margin-bottom: 3rem;">
+                    <h3 style="color: var(--color-text-main); margin-bottom: 1rem;">Our Journey & Formation</h3>
+                    <p style="margin-bottom: 1rem;">The club began its journey on October 18, 2024. Since then, we have
+                        reached several key regulatory milestones to ensure a professional foundation for our members:
+                    </p>
+                    <ul class="features-list">
+                        <li><strong style="color: var(--color-text-main); margin-right: 5px;">Federation
+                                Approval:</strong> Granted by Swedish Badminton Federation in January 2025.</li>
+                        <li><strong style="color: var(--color-text-main); margin-right: 5px;">Tax Registration:</strong>
+                            Fully approved as of January 27, 2025.</li>
+                    </ul>
+                </div>
+
+                <div style="margin-bottom: 3rem;">
+                    <h3 style="color: var(--color-text-main); margin-bottom: 1rem;">Competitive Play & Growth</h3>
+                    <p style="margin-bottom: 1rem;">We are committed to bringing our players to the competitive stage.
+                    </p>
+                    <ul class="features-list">
+                        <li><strong style="color: var(--color-text-main); margin-right: 5px;">Tournament
+                                Integration:</strong> In August 2025, registered in official Tournament Software.</li>
+                        <li><strong style="color: var(--color-text-main); margin-right: 5px;">Active
+                                Participation:</strong> Players began competing in September 2025.</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 style="color: var(--color-text-main); margin-bottom: 1rem;">Current Programs</h3>
+                    <p style="margin-bottom: 1rem;">Titans Badminton Klub is actively expanding its reach:</p>
+                    <ul class="features-list">
+                        <li><strong style="color: var(--color-text-main); margin-right: 5px;">Women’s Team:</strong>
+                            Weekday play group initiated with an initial core of three players.</li>
+                        <li><strong style="color: var(--color-text-main); margin-right: 5px;">Kids’ Training:</strong>
+                            Developing a structured training program for younger players.</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ASSOCIATION INFO SECTION -->
+    <section id="association">
+        <div class="container">
+            <div class="section-header">
+                <h2>Association Info</h2>
+                <p>Meet our dedicated board members.</p>
+            </div>
+
+            <div class="hero-grid">
+                <div class="hero-card">
+                    <h3 style="margin-bottom: 0;">Sumathy Jayakodi</h3>
+                    <p style="color: var(--color-neon-yellow); font-weight: bold; margin-bottom: 0.5rem;">Chairman</p>
+                </div>
+                <div class="hero-card">
+                    <h3 style="margin-bottom: 0;">Ranjith Vinayak Kumaravelu</h3>
+                    <p style="color: var(--color-neon-yellow); font-weight: bold; margin-bottom: 0.5rem;">Secretary</p>
+                </div>
+                <div class="hero-card">
+                    <h3 style="margin-bottom: 0;">Ravishankar Gunasekaran</h3>
+                    <p style="color: var(--color-neon-yellow); font-weight: bold; margin-bottom: 0.5rem;">Treasurer</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2>Get in Touch</h2>
+            </div>
+            <div class="contact-grid">
+                <div>
+                    <form class="contact-form">
+                        <div class="form-group">
+                            <input type="text" id="contact-name" class="form-input" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="contact-email" class="form-input" placeholder="Email Address"
+                                required>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="contact-message" class="form-input" rows="5" placeholder="Message"
+                                required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-fill">SEND MESSAGE</button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Titan Badminton Club. Org No:802538-6726. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // --- JAVASCRIPT INTERACTIONS ---
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // Mobile Menu
+            const menuToggle = document.querySelector('.menu-toggle');
+            const navLinks = document.querySelector('.nav-links');
+
+            if (menuToggle) {
+                menuToggle.addEventListener('click', () => {
+                    navLinks.classList.toggle('active');
+                });
+            }
+
+            // Close menu on link click
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navLinks.classList.remove('active');
+                });
+            });
+
+            // Smooth Scroll & Active State
+            const sections = document.querySelectorAll('section');
+            const navItems = document.querySelectorAll('.nav-links a');
+
+            window.addEventListener('scroll', () => {
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    if (pageYOffset >= (sectionTop - sectionHeight / 3)) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                navItems.forEach(item => {
+                    item.classList.remove('active');
+                    if (item.getAttribute('href').includes(current)) {
+                        item.classList.add('active');
+                    }
+                });
+            });
+
+            // Form Submit Effect
+            const form = document.querySelector('form');
+            if (form) {
+                form.addEventListener('submit', (e) => {
+                    e.preventDefault();
+
+                    // Get values
+                    const name = document.getElementById('contact-name').value;
+                    const email = document.getElementById('contact-email').value;
+                    const message = document.getElementById('contact-message').value;
+
+                    // Construct Mailto
+                    const subject = `Titan BK Inquiry from ${name}`;
+                    const body = `Name: ${name}%0D%0AEmail: ${email}%0D%0A%0D%0AMessage:%0D%0A${message}`;
+                    window.location.href = `mailto:titansbk.se@gmail.com?subject=${encodeURIComponent(subject)}&body=${body}`;
+
+                    // Visual Feedback
+                    const btn = form.querySelector('button');
+                    const originalText = btn.innerText;
+                    btn.innerText = 'OPENING MAIL...';
+                    btn.style.background = '#fff';
+                    btn.style.color = '#000';
+
+                    setTimeout(() => {
+                        btn.innerText = originalText;
+                        btn.style.background = '';
+                        btn.style.color = '';
+                        form.reset();
+                    }, 3000);
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>
