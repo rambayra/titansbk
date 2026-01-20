@@ -1,2 +1,2 @@
 # titansbk
-Simple HTMl page for our badminton club in sweden
+Simple HTML page for our badminton club in sweden
